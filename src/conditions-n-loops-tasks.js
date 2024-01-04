@@ -90,8 +90,19 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  let result = null;
+  if (
+    (a === b && a === Math.ceil(Math.sqrt(c))) ||
+    (a === c && a === Math.ceil(Math.sqrt(b))) ||
+    (b === c && b === Math.ceil(Math.sqrt(a)))
+  ) {
+    result = true;
+  } else {
+    result = false;
+  }
+
+  return result;
 }
 
 /**
@@ -108,8 +119,30 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let newNum = num;
+  let newStr = '';
+
+  while (newNum / 10 > 0) {
+    if (newNum - 10 >= 0) {
+      newStr += 'X';
+      newNum -= 10;
+    } else if (newNum - 9 >= 0) {
+      newStr += 'IX';
+      newNum -= 9;
+    } else if (newNum - 5 >= 0) {
+      newStr += 'V';
+      newNum -= 5;
+    } else if (newNum - 4 >= 0) {
+      newStr += 'IV';
+      newNum -= 4;
+    } else if (newNum - 1 >= 0) {
+      newStr += 'I';
+      newNum -= 1;
+    }
+  }
+
+  return newStr;
 }
 
 /**
@@ -127,8 +160,56 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let newStr = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        newStr += newStr.length > 0 ? ' minus' : 'minus';
+        break;
+      case '1':
+        newStr += newStr.length > 0 ? ' one' : 'one';
+        break;
+      case '2':
+        newStr += newStr.length > 0 ? ' two' : 'two';
+        break;
+      case '3':
+        newStr += newStr.length > 0 ? ' three' : 'three';
+        break;
+      case '4':
+        newStr += newStr.length > 0 ? ' four' : 'four';
+        break;
+      case '5':
+        newStr += newStr.length > 0 ? ' five' : 'five';
+        break;
+      case '6':
+        newStr += newStr.length > 0 ? ' six' : 'six';
+        break;
+      case '7':
+        newStr += newStr.length > 0 ? ' seven' : 'seven';
+        break;
+      case '8':
+        newStr += newStr.length > 0 ? ' eight' : 'eight';
+        break;
+      case '9':
+        newStr += newStr.length > 0 ? ' nine' : 'nine';
+        break;
+      case '0':
+        newStr += newStr.length > 0 ? ' zero' : 'zero';
+        break;
+      case '.':
+        newStr += newStr.length > 0 ? ' point' : 'point';
+        break;
+      case ',':
+        newStr += newStr.length > 0 ? ' point' : 'point';
+        break;
+      default:
+        newStr += '';
+        break;
+    }
+  }
+
+  return newStr;
 }
 
 /**
@@ -143,8 +224,13 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let newStr = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    newStr += str[i];
+  }
+
+  return newStr === str;
 }
 
 /**
@@ -161,8 +247,14 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let result = -1;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      result = i;
+    }
+  }
+  return result;
 }
 
 /**
@@ -180,8 +272,17 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let index = 0;
+  const n = `${num}`;
+  const d = `${digit}`;
+  while (index < n.length) {
+    if (n[index] === d) {
+      return true;
+    }
+    index += 1;
+  }
+  return false;
 }
 
 /**
