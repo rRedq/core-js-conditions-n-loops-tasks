@@ -346,8 +346,69 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  let arr = new Array(size);
+  let count = 1;
+  let maxSize = size ** 2;
+  let index = size;
+  let row = 0;
+  let circle = 4;
+  let colDefault = 0;
+
+  function rotateMatrixLeft(param) {
+    const newArr = new Array(size);
+    for (let i = 0; i < newArr.length; i += 1) {
+      newArr[i] = new Array(size);
+      for (let j = 0; j < newArr.length; j += 1) {
+        newArr[i][j] = 0;
+      }
+    }
+    for (let i = 0; i < param.length; i += 1) {
+      for (let j = 0; j < param.length; j += 1) {
+        newArr[j][i] = param[i][param.length - 1 - j];
+      }
+    }
+
+    return newArr;
+  }
+
+  for (let i = 0; i < arr.length; i += 1) {
+    arr[i] = new Array(size);
+    for (let j = 0; j < arr.length; j += 1) {
+      arr[i][j] = 0;
+    }
+  }
+
+  while (count <= size ** 2) {
+    let col = colDefault;
+    if (circle === 0) {
+      circle = 3;
+      row += 1;
+    } else {
+      circle -= 1;
+    }
+    while (index > 0) {
+      if (arr[row][col] !== 0) {
+        col += 1;
+        colDefault += 1;
+      }
+      arr[row][col] = count;
+      maxSize -= 1;
+      count += 1;
+      index -= 1;
+      col += 1;
+    }
+    arr = rotateMatrixLeft(arr);
+    index = Math.floor(Math.sqrt(maxSize));
+  }
+
+  let position = arr[0][0] === 1;
+  while (!position) {
+    arr = rotateMatrixLeft(arr);
+    position = arr[0][0] === 1;
+  }
+
+  return arr;
 }
 
 /**
